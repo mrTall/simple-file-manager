@@ -116,7 +116,7 @@ if(isset($_GET['do']) && $_GET['do'] == 'list') {
 } elseif (isset($_POST['do']) && $_POST['do'] == 'unzip') {
     $zip = new ZipArchive();
     $zip->open($file);
-    $path = basename( $file, '.zip' );
+    $path = dirname( realpath( $file ) );
     if(!file_exists($path)) { mkdir($path); }
     $zip->extractTo($path);
     $zip->close();
